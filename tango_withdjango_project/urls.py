@@ -28,5 +28,7 @@ urlpatterns = [
         # now need to create urls.py in rango app to handled
         # remaining URL string (and map the empty string to
         # the index view)
+    
+    
 ]
 
