@@ -14,9 +14,13 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+print(BASE_DIR)
 
 # Path to templates directory
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'tango_withdjango_project/templates')
+print(TEMPLATE_DIR)
+
+# Path to static directory
 STATIC_DIR = os.path.join(BASE_DIR, 'tango_withdjango_project/static')
 print(STATIC_DIR)
 
