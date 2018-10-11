@@ -1,7 +1,72 @@
-<!DOCTYPE html>
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
 
-{% load staticfiles %} <!-- New Line -->
 
+{% block title_block %}
+    Home
+{% endblock title_block %}
+
+{% block body_block %}
+    <h1>Rango says...</h1>
+    
+    {% if user.is_authenticated %}
+        <div>Howdy {{ user.username }}!</div>
+    {% else %}
+        <div>Hey There Partner!</div>
+    {% endif %}
+        
+    
+
+    <div>
+        <br />
+        {% if categories_by_likes %}
+            <strong>Most Liked Categories</strong>
+            <ul>
+                
+                {% for category in categories_by_likes %}
+                    <li>
+                        <a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a>
+                    </li>
+                {% endfor %}
+                    
+            </ul>
+        {% else %}
+            <strong>There are no categories present.</strong>
+        {% endif %}
+    </div>
+
+    <div>
+        <br />
+        
+        {% if pages_by_views %}
+            <strong>Most Viewed Pages</strong>
+            <ul>
+                
+                {% for page in pages_by_views %}
+                    <li>
+                        <a href="{% url 'rango:show_page' page.slug %}">{{ page.title }}</a>
+                    </li>
+                {% endfor %}
+                    
+            </ul>
+        {% else %}
+            <strong>There is no page requested.</strong>
+        {% endif %}
+            
+    </div>
+
+    <div>
+        <br />
+        <img src="{% static 'images/kitten.jpg' %}" alt="picture of a very cute kitten" height="300">
+    </div>
+{% endblock body_block %}
+        
+
+<!-- Pre-Refractor -->
+
+<!-- <!DOCTYPE html>
+
+{% load staticfiles %}
 <html>
 
     <head>
@@ -11,13 +76,53 @@
     <body>
         <h1>Rango says...</h1>
         <div>
-            hey there partnet! <br />
-            <strong>{{ boldmessage }}</strong><br />
+            hey there partner! <br />
         </div>
+        
         <div>
-            <a href="/rango/about/">About</a> <br />
-            <img src="{% static "images/kitten.jpg" %}" alt="Picture of Cat" />
+            {% if categories_by_likes  %}
+            <strong>Most Liked Categories</strong>
+            <ul>
+                {% for category in categories_by_likes %}
+                    <li>
+                        <a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a>
+                    </li>    
+                {% endfor %}
+            </ul>
+            {% else %}
+                <strong>There are no categories present.</strong>
+            {% endif %}    
+        </div>
+
+        <div>
+            
+            {% if pages_by_views %}
+            <strong>Most Viewed Pages</strong>
+            <ul>
+                
+                {% for page in pages_by_views %}
+                    <li>
+                        <a href="/rango/page/{{ page.slug }}">{{ page.title }}</a>
+                    </li>
+                {% endfor %}
+                    
+            </ul>
+            {% else %}
+                <strong>There are no pages present.</strong>
+            {% endif %}
+                
+        </div>
+
+        <div>
+            <br>
+            <a href="/rango/add_category/">Add a New Category</a>
+            <br>
+        </div>
+
+        <div>
+            <a href="{% url 'rango:about' %}">About</a> <br />
+            <img src="{% static "images/kitten.jpg" %}" alt="Picture of Cat" height="400"/>
         </div>
     </body>
 
-</html>
+</html> -->

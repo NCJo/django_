@@ -1,0 +1,47 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    {{ page.title }}
+{% endblock title_block %}
+
+{% block body_block %}
+    <div>
+        
+        {% if page %}
+            <h1>{{ page.title }}</h1>
+            <ul>
+                <li>URL: {{ page.url }}</li>
+                <li>Views: {{ page.views }}</li>
+            </ul>
+        {% else %}
+            <strong>There are no such pages.</strong>
+        {% endif %}
+            
+    </div>
+{% endblock body_block %}
+    
+
+<!-- Pre-Refractoring -->
+
+<!-- <!DOCTYPE>
+<html>
+    <head>
+        <title>Rango</title>
+    </head>
+    <body>
+        <div>
+            
+            {% if page %}
+                <h1>{{ page.title }}</h1>
+                <ul>
+                    <li>URL: {{ page.url }}</li>
+                    <li>Views: {{ page.views }}</li>
+                </ul>
+            {% else %}
+                <strong>There are no such page</strong>
+            {% endif %}
+                
+        </div>
+    </body>
+</html> -->
